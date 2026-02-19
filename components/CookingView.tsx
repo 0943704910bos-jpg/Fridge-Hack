@@ -68,11 +68,7 @@ export const CookingView: React.FC<CookingViewProps> = ({ recipe, onBack }) => {
 
       <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-white/60">
         <div className="relative h-64 md:h-96">
-            <img 
-              src={recipe.imageUrl || 'https://images.unsplash.com/photo-1495195129352-aed325a55b65?q=80&w=1000'} 
-              className="w-full h-full object-cover" 
-              alt={recipe.recipeName}
-            />
+            <img src={recipe.imageUrl || 'https://images.unsplash.com/photo-1495195129352-aed325a55b65?q=80&w=1000'} alt={recipe.recipeName} className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end">
                 <div className="p-8 md:p-12 text-white">
                     <h1 className="text-3xl md:text-5xl font-bold mb-2 leading-tight">{recipe.recipeName}</h1>

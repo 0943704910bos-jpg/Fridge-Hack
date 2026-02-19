@@ -7,13 +7,7 @@ interface LandingPageProps {
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
-  const handleStart = async () => {
-    // @ts-ignore: aistudio is globally defined in the runtime environment
-    const hasKey = await window.aistudio.hasSelectedApiKey();
-    if (!hasKey) {
-      // @ts-ignore: aistudio is globally defined in the runtime environment
-      await window.aistudio.openSelectKey();
-    }
+  const handleStart = () => {
     onStart();
   };
 
@@ -49,9 +43,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             >
               <span>🚀</span> เข้าสู่ห้องครัว AI
             </button>
-            <p className="text-white/40 text-xs font-light">
-              *ต้องมีการเลือก API Key สำหรับฟีเจอร์การสร้างวิดีโอ (Veo)
-            </p>
           </div>
         </div>
 

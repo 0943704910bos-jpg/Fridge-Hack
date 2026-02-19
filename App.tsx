@@ -30,14 +30,16 @@ const App: React.FC = () => {
       setRecipes(result);
       
       // Lazily generate images for the recipes
-      result.forEach(async (recipe, idx) => {
-          try {
-            const imageUrl = await generateRecipeImage(recipe.imagePrompt);
-            setRecipes(prev => prev.map((r, i) => i === idx ? { ...r, imageUrl } : r));
-          } catch (e) {
-            console.error("Image generation failed for recipe", idx);
-          }
-      });
+      for (const [idx, recipe] of result.entries()) {
+        try {
+          const imageUrl = await generateRecipeImage(recipe.imagePrompt);
+          setRecipes(prev => prev.map((r, i) => i === idx ? { ...r, imageUrl } : r));
+          // Add a delay between requests to avoid rate limiting
+          await new Promise(resolve => setTimeout(resolve, 4000));
+        } catch (e) {
+          console.error("Image generation failed for recipe", idx);
+        }
+      }
 
     } catch (err: any) {
       setError(err.message || 'เกิดข้อผิดพลาดที่ไม่คาดคิด');
